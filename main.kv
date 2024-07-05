@@ -1,0 +1,41 @@
+ScreensManager:
+    name: "screensmanager"
+    MainScreen:
+    CameraScreen:
+
+<MainScreen>:
+    name: "Main screen"
+    FloatLayout:
+        Image:
+            id: image
+            size_hint: self.texture_size
+            pos_hint:{"center_x": .5, "center_y": .75}
+        Button:
+            text: "Загрузить последнее фото"
+            pos_hint: {"center_x": .5, "center_y": 0.4}
+            size_hint: .9, .1
+            on_press: root.release()
+        Button:
+            text: "Открыть камеру"
+            pos_hint: {"center_x": .5, "center_y": .15}
+            size_hint: .9, .2
+            on_release: app.root.current = "Camera"
+
+<CameraScreen>:
+    name: "Camera"
+
+    FloatLayout:
+        Button:
+            text: "Меню"
+            pos_hint: {"center_x": .5, "center_y": .85}
+            size_hint: .8, .1
+            on_press: app.root.current = "Main screen"
+        Camera:
+            id: camera
+            resolution: (800,800)
+            play: True
+        Button:
+            text: "Снимок"
+            pos_hint: {"center_x": .5, "center_y": .15}
+            size_hint: .8, .2
+            on_press: root.screen_shot()
